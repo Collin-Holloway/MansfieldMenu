@@ -79,12 +79,24 @@ const filterBtns = document.querySelectorAll('.filter-btn')
 
 // load items
 window.addEventListener("DOMContentLoaded", function () {
-  diplayMenuItems(menu);
+  displayMenuItems(menu);
 });
 // filter items
 filterBtns.forEach(function(btn){
     btn.addEventListener('click', function(e){
-        console.log(e.currentTarget.dataset)
+        const category = e.currentTarget.dataset.id;
+        const menuCategory = menu.filter(function(menuItem){
+          
+          if(menuItem.category === category){
+            return menuItem
+          }
+      })  
+      //console.log(menuCategory)
+      if(category === 'all'){
+        displayMenuItems(menu)
+      } else {
+        displayMenuItems(menuCategory)
+      }
     })
 })
 
@@ -92,7 +104,7 @@ filterBtns.forEach(function(btn){
 
 
 
-function diplayMenuItems(menuItems) {
+function displayMenuItems(menuItems) {
   let displayMenu = menuItems.map(function (item) {
     // console.log(item);
 
